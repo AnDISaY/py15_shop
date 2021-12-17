@@ -1,0 +1,53 @@
+1. Создать директорию для проекта
+2. В данной директории необходимо создать вирутальное окружение # python3 -m venv venv, активировать его # source venv/bin/activate
+3. В папке проекта необходимо создать файл зависимости(requirements.txt), описать все нужные библиотеки, после установить эти зависимости # pip install -r requirements.txt
+#only for django
+4. Создаем Django проект # django-admin startproject название_проекта .\
+5. Создаем приложение проекта # python3 manage.py startapp название_приложения
+6. Создаем базу данных для проекта
+7. Указываем приложение в INSTALLED_APPS, указываем настройки базы данных, указываем настройки языка, часового пояса и т.
+8. Создаем модель пользователя, в settings добавляем настройку AUTH_USER_MODEL(если надо)
+9. Определяем остальные модели
+10. Делаем миграции # python3 manage.py make migrations; python3 migrate
+11. Создать админа # python3 manage.py createsuperuser #email=test1@gmail.com, name=say, password=1
+
+
+# ORM
+# Product.objects.filter(Q(условие)|Q(условие2))
+# Product.objects.filter(~Q(условие))      #обратное условию
+# Product.objects.exclude(условие)         #обратное условию
+# Product.objects.filter(price__gt=50000)
+# Product.objects.filter(price__lt=50000)
+# Product.objects.filter(price__gte=50000)
+# Product.objects.filter(price__lte=50000)
+# Product.objects.filter(price=50000)      #неравенства нету
+# Product.objects.filter(~Q(price=50000))  #только такое
+# Product.objects.filter(category_id__in=['phones', 'notebooks'])
+# Product.objects.filter(price__range=[20000, 50000])
+# Product.objects.filter(name__exact='Iphone')
+# Product.objects.filter(name__iexact='Iphone')
+# Product.objects.filter(name__startswith='Iphone')
+# Product.objects.filter(name__istartswith='Iphone')
+# Product.objects.filter(name__contains='Iphone')
+# Product.objects.filter(name__icontains='Iphone')
+# Product.objects.filter(name__endswith='Iphone')
+# Product.objects.filter(name__iendswith='Iphone')
+# Product.objects.order_by(price)          #по убыванию
+# Product.objects.order_by(-price)         #по возрастанию
+# Product.objects.only('name')
+# Product.objects.only('name', 'price')
+# Product.objects.defer('name')
+# Product.objects.defer('name', 'price')
+# Product.objects.count()
+# Product.objects.filter(...).count()
+# Product.objects.create(name='Apple Iphone 12',
+                         description='asdsdfv',
+                         price=78000,
+                         category_id='phones')
+# Product.objects.bulk_create([
+                         Product(...),
+                         Product(...)
+                         )]
+product.objects.filter(...).update(price=50000)
+# Product.objects.delete()
+# Product.objects.filter(...).delete()
